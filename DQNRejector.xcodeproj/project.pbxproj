@@ -13,6 +13,8 @@
 		43BEF1D02102E7AF002F55D1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BEF1CF2102E7AF002F55D1 /* Alamofire.framework */; };
 		43BEF1D22102E7AF002F55D1 /* BubbleTransition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BEF1D12102E7AF002F55D1 /* BubbleTransition.framework */; };
 		43BEF1D42102EACA002F55D1 /* TapticEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BEF1D32102EACA002F55D1 /* TapticEngine.framework */; };
+		43BEF1D821031E8B002F55D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BEF1D721031E8B002F55D1 /* AVFoundation.framework */; };
+		43BEF1DA21032186002F55D1 /* failed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 43BEF1D921032186002F55D1 /* failed.mp3 */; };
 		43CC60782102C21B00D227E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC60772102C21B00D227E7 /* AppDelegate.swift */; };
 		43CC607A2102C21B00D227E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC60792102C21B00D227E7 /* ViewController.swift */; };
 		43CC607D2102C21B00D227E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43CC607B2102C21B00D227E7 /* Main.storyboard */; };
@@ -28,6 +30,8 @@
 		43BEF1CF2102E7AF002F55D1 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BEF1D12102E7AF002F55D1 /* BubbleTransition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BubbleTransition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BEF1D32102EACA002F55D1 /* TapticEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TapticEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43BEF1D721031E8B002F55D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		43BEF1D921032186002F55D1 /* failed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = failed.mp3; sourceTree = "<group>"; };
 		43C9926BF4187C045B368A57 /* Pods-DQNRejector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DQNRejector.release.xcconfig"; path = "Pods/Target Support Files/Pods-DQNRejector/Pods-DQNRejector.release.xcconfig"; sourceTree = "<group>"; };
 		43CC60742102C21B00D227E7 /* DQNRejector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DQNRejector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CC60772102C21B00D227E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43BEF1D821031E8B002F55D1 /* AVFoundation.framework in Frameworks */,
 				43BEF1D42102EACA002F55D1 /* TapticEngine.framework in Frameworks */,
 				43BEF1D02102E7AF002F55D1 /* Alamofire.framework in Frameworks */,
 				43BEF1D22102E7AF002F55D1 /* BubbleTransition.framework in Frameworks */,
@@ -85,6 +90,7 @@
 				43BEF1C92102CEAB002F55D1 /* Struct.swift */,
 				43BEF1CB2102D058002F55D1 /* DQNUI.swift */,
 				43BEF1CD2102D540002F55D1 /* CameraViewController.swift */,
+				43BEF1D921032186002F55D1 /* failed.mp3 */,
 			);
 			path = DQNRejector;
 			sourceTree = "<group>";
@@ -101,6 +107,7 @@
 		840BE579F0059519CDD881B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43BEF1D721031E8B002F55D1 /* AVFoundation.framework */,
 				43BEF1D32102EACA002F55D1 /* TapticEngine.framework */,
 				43BEF1CF2102E7AF002F55D1 /* Alamofire.framework */,
 				43BEF1D12102E7AF002F55D1 /* BubbleTransition.framework */,
@@ -172,6 +179,7 @@
 				43CC60822102C21C00D227E7 /* LaunchScreen.storyboard in Resources */,
 				43CC607F2102C21C00D227E7 /* Assets.xcassets in Resources */,
 				43CC607D2102C21B00D227E7 /* Main.storyboard in Resources */,
+				43BEF1DA21032186002F55D1 /* failed.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 import Foundation
 
 struct Balance: Codable {
-    let balance : String
+    let result : String
 }
 
 struct Login: Codable {
