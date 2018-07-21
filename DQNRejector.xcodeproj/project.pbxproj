@@ -18,6 +18,9 @@
 		43BEF1DC21032D88002F55D1 /* beamgun.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 43BEF1DB21032D88002F55D1 /* beamgun.mp3 */; };
 		43BEF1DE21032DAC002F55D1 /* SendDQNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BEF1DD21032DAC002F55D1 /* SendDQNViewController.swift */; };
 		43BEF1E021033A48002F55D1 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BEF1DF21033A48002F55D1 /* OnboardingViewController.swift */; };
+		43BEF1E221037E80002F55D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43BEF1E121037E80002F55D1 /* GoogleService-Info.plist */; };
+		43BEF1E421037EBB002F55D1 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BEF1E321037EBB002F55D1 /* FirebaseCore.framework */; };
+		43BEF1E621037EBB002F55D1 /* FirebaseFirestore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BEF1E521037EBB002F55D1 /* FirebaseFirestore.framework */; };
 		43CC60782102C21B00D227E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC60772102C21B00D227E7 /* AppDelegate.swift */; };
 		43CC607A2102C21B00D227E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC60792102C21B00D227E7 /* ViewController.swift */; };
 		43CC607D2102C21B00D227E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43CC607B2102C21B00D227E7 /* Main.storyboard */; };
@@ -38,6 +41,9 @@
 		43BEF1DB21032D88002F55D1 /* beamgun.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beamgun.mp3; sourceTree = "<group>"; };
 		43BEF1DD21032DAC002F55D1 /* SendDQNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDQNViewController.swift; sourceTree = "<group>"; };
 		43BEF1DF21033A48002F55D1 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		43BEF1E121037E80002F55D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		43BEF1E321037EBB002F55D1 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43BEF1E521037EBB002F55D1 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C9926BF4187C045B368A57 /* Pods-DQNRejector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DQNRejector.release.xcconfig"; path = "Pods/Target Support Files/Pods-DQNRejector/Pods-DQNRejector.release.xcconfig"; sourceTree = "<group>"; };
 		43CC60742102C21B00D227E7 /* DQNRejector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DQNRejector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CC60772102C21B00D227E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43BEF1E421037EBB002F55D1 /* FirebaseCore.framework in Frameworks */,
+				43BEF1E621037EBB002F55D1 /* FirebaseFirestore.framework in Frameworks */,
 				43BEF1D821031E8B002F55D1 /* AVFoundation.framework in Frameworks */,
 				43BEF1D42102EACA002F55D1 /* TapticEngine.framework in Frameworks */,
 				43BEF1D02102E7AF002F55D1 /* Alamofire.framework in Frameworks */,
@@ -100,6 +108,7 @@
 				43BEF1DB21032D88002F55D1 /* beamgun.mp3 */,
 				43BEF1DD21032DAC002F55D1 /* SendDQNViewController.swift */,
 				43BEF1DF21033A48002F55D1 /* OnboardingViewController.swift */,
+				43BEF1E121037E80002F55D1 /* GoogleService-Info.plist */,
 			);
 			path = DQNRejector;
 			sourceTree = "<group>";
@@ -116,6 +125,8 @@
 		840BE579F0059519CDD881B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43BEF1E321037EBB002F55D1 /* FirebaseCore.framework */,
+				43BEF1E521037EBB002F55D1 /* FirebaseFirestore.framework */,
 				43BEF1D721031E8B002F55D1 /* AVFoundation.framework */,
 				43BEF1D32102EACA002F55D1 /* TapticEngine.framework */,
 				43BEF1CF2102E7AF002F55D1 /* Alamofire.framework */,
@@ -188,6 +199,7 @@
 				43CC60822102C21C00D227E7 /* LaunchScreen.storyboard in Resources */,
 				43CC607F2102C21C00D227E7 /* Assets.xcassets in Resources */,
 				43CC607D2102C21B00D227E7 /* Main.storyboard in Resources */,
+				43BEF1E221037E80002F55D1 /* GoogleService-Info.plist in Resources */,
 				43BEF1DA21032186002F55D1 /* failed.mp3 in Resources */,
 				43BEF1DC21032D88002F55D1 /* beamgun.mp3 in Resources */,
 			);
@@ -222,14 +234,32 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DQNRejector/Pods-DQNRejector-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/BubbleTransition/BubbleTransition.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/TapticEngine/TapticEngine.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BubbleTransition.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapticEngine.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -397,6 +427,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6Z8242LF74;
 				INFOPLIST_FILE = DQNRejector/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -416,6 +447,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6Z8242LF74;
 				INFOPLIST_FILE = DQNRejector/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

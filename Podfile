@@ -7,6 +7,8 @@ def install_pods
     pod 'Alamofire'
     pod 'BubbleTransition'
     pod 'TapticEngine'
+    pod 'Firebase/Core'
+    pod 'Firebase/Firestore'
     # Pods for GRIT Timer
 end
 

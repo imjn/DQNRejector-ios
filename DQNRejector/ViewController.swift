@@ -26,6 +26,13 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
         
         containerView.Amin()
         
+//        guard let address =  UserDefaults.standard.string(forKey: "address") else {
+//            
+//            Firestore.firestore().collection("users").document().documentID
+//            
+//            return
+//        }
+        
         requestDQN(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/EthCall", address: "0xc633c8d9e80a5e10bb939812b548b821554c49a6")
         
         

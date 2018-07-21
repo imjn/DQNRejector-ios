@@ -141,8 +141,8 @@
                         <viewLayoutGuide key="safeArea" id="y7q-7f-i5Q"/>
                     </view>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="ToUser" id="Ksv-I7-2M7"/>
-                        <segue destination="079-y4-z17" kind="show" identifier="ToAdmin" id="PJT-oq-hrq"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="ToUser" modalTransitionStyle="crossDissolve" id="Ksv-I7-2M7"/>
+                        <segue destination="079-y4-z17" kind="presentation" identifier="ToAdmin" modalTransitionStyle="crossDissolve" id="PJT-oq-hrq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHL-J5-LTd" userLabel="First Responder" sceneMemberID="firstResponder"/>

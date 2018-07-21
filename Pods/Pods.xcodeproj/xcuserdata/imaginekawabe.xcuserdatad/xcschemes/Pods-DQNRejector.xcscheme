@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8802DD35DD12A84D8B8E2801A6DD2F61"
+               BlueprintIdentifier = "ACF04BEB5480AADDC8DBC49A9E70FB71"
                BuildableName = "Pods_DQNRejector.framework"
                BlueprintName = "Pods-DQNRejector"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8802DD35DD12A84D8B8E2801A6DD2F61"
+            BlueprintIdentifier = "ACF04BEB5480AADDC8DBC49A9E70FB71"
             BuildableName = "Pods_DQNRejector.framework"
             BlueprintName = "Pods-DQNRejector"
             ReferencedContainer = "container:Pods.xcodeproj">
