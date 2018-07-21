@@ -1,16 +1,24 @@
 PODS:
   - Alamofire (4.7.3)
+  - BubbleTransition (3.1.0)
+  - TapticEngine (1.1.0)
 
 DEPENDENCIES:
   - Alamofire
+  - BubbleTransition
+  - TapticEngine
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - BubbleTransition
+    - TapticEngine
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  BubbleTransition: 9c6e1be2dede21aca6ef5388dd9bea9771f7e7fe
+  TapticEngine: b78b5513432b3c01af2ebbe018c0995778306757
 
-PODFILE CHECKSUM: 3e0115d74bd98050dd1a1eb5a99f1e14593849db
+PODFILE CHECKSUM: 2bd9f0f60e15e247ac8a1080b6c3cda89e9fc3a1
 
 COCOAPODS: 1.5.3

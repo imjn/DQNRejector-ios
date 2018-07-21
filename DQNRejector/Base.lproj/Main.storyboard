@@ -17,13 +17,100 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frT-Kd-6KR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vaT-JD-gJv">
+                                        <rect key="frame" x="146.5" y="199.5" width="82.5" height="180.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULJ-XK-ouN">
+                                                <rect key="frame" x="0.5" y="0.0" width="81.5" height="125"/>
+                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="125"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DQN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cym-d2-Beh">
+                                                <rect key="frame" x="0.0" y="145" width="82.5" height="35.5"/>
+                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="35"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kT-MY-2SS">
+                                        <rect key="frame" x="147" y="527" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="kOq-Ue-bnL"/>
+                                            <constraint firstAttribute="height" constant="80" id="sos-8A-new"/>
+                                        </constraints>
+                                        <state key="normal" image="qr-code"/>
+                                        <connections>
+                                            <action selector="toCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pp0-Id-6Tt"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="vaT-JD-gJv" firstAttribute="centerX" secondItem="frT-Kd-6KR" secondAttribute="centerX" id="Ff4-Zc-GgT"/>
+                                    <constraint firstAttribute="bottom" secondItem="5kT-MY-2SS" secondAttribute="bottom" constant="60" id="KGQ-hV-hng"/>
+                                    <constraint firstItem="5kT-MY-2SS" firstAttribute="centerX" secondItem="frT-Kd-6KR" secondAttribute="centerX" id="euj-os-RmC"/>
+                                    <constraint firstItem="vaT-JD-gJv" firstAttribute="centerY" secondItem="frT-Kd-6KR" secondAttribute="centerY" constant="-43.75" id="omE-vg-gDU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="frT-Kd-6KR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="KEK-m1-XjB"/>
+                            <constraint firstItem="frT-Kd-6KR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Mn6-1j-Su3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="frT-Kd-6KR" secondAttribute="trailing" id="ijG-S2-vmg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="frT-Kd-6KR" secondAttribute="bottom" id="m6H-av-MsR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="cameraBtn" destination="5kT-MY-2SS" id="OUu-Fh-Gzk"/>
+                        <outlet property="containerView" destination="frT-Kd-6KR" id="Oux-QA-7Cc"/>
+                        <segue destination="ocB-rV-6G3" kind="presentation" identifier="ToCamera" id="Qvu-fi-Rao"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="177" y="150"/>
+            <point key="canvasLocation" x="176.80000000000001" y="149.77511244377811"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="Dga-Y3-cxn">
+            <objects>
+                <viewController id="ocB-rV-6G3" customClass="CameraViewController" customModule="DQNRejector" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z8z-wM-u2I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWx-Hm-fBb">
+                                <rect key="frame" x="123" y="590" width="129" height="42"/>
+                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="30"/>
+                                <state key="normal" title="CANCEL">
+                                    <color key="titleColor" red="0.55686274509803924" green="0.1764705882352941" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismiss:" destination="ocB-rV-6G3" eventType="touchUpInside" id="BYz-QA-hJP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KJH-RQ-AaW" firstAttribute="bottom" secondItem="LWx-Hm-fBb" secondAttribute="bottom" constant="35" id="fmL-hU-VFC"/>
+                            <constraint firstItem="LWx-Hm-fBb" firstAttribute="centerX" secondItem="Z8z-wM-u2I" secondAttribute="centerX" id="sMA-fT-Wy8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KJH-RQ-AaW"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iN6-6Y-lCI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="992.79999999999995" y="149.77511244377811"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="qr-code" width="130" height="130"/>
+    </resources>
 </document>

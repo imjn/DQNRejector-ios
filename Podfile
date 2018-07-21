@@ -5,6 +5,8 @@ use_frameworks!
 # インストールするpodをまとめた定数
 def install_pods
     pod 'Alamofire'
+    pod 'BubbleTransition'
+    pod 'TapticEngine'
     # Pods for GRIT Timer
 end
 
