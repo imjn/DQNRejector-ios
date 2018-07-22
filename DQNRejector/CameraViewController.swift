@@ -14,9 +14,13 @@ import TapticEngine
 
 class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
+    var audioPlayerInstance : AVAudioPlayer! = nil
+    
     // カメラやマイクの入出力を管理するオブジェクトを生成
     private let session = AVCaptureSession()
     var uid = String()
+    
+    var currentDQN = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +71,17 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 print("Error occured while creating video device input: \(error)")
             }
         }
+        
+        let soundFilePath = Bundle.main.path(forResource: "failed", ofType: "mp3")!
+        let sound:URL = URL(fileURLWithPath: soundFilePath)
+        // AVAudioPlayerのインスタンスを作成
+        do {
+            audioPlayerInstance = try AVAudioPlayer(contentsOf: sound, fileTypeHint:nil)
+        } catch {
+            print("AVAudioPlayerインスタンス作成失敗")
+        }
+        // バッファに保持していつでも再生できるようにする
+        audioPlayerInstance.prepareToPlay()
     }
     
     override func didReceiveMemoryWarning() {
@@ -121,12 +136,36 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                             
                             let json = response.data
                             
-                            if let result = try? JSONDecoder().decode(DQNString.self, from: json!)
+                            if let result = try? JSONDecoder().decode(UrlAndLimit.self, from: json!)
                             {
                                 
                                 if let url = URL(string: result.result) {
                                     TapticEngine.notification.feedback(.success)
-                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                    
+                                    let limit = result.limit
+                                    
+                                    print("りみっとだぜえええええ\(limit)")
+                                    
+                                    if self.currentDQN > limit {
+                                        
+                                        let alert = UIAlertController(title: "あなたはDQNすぎます。", message: "入場することはできません。", preferredStyle: .alert)
+                                        
+                                        let defaultAction: UIAlertAction = UIAlertAction(title: "帰る", style: UIAlertActionStyle.default, handler:{
+                                            (action: UIAlertAction!) -> Void in
+                                            
+                                            self.dismiss(animated: true, completion: nil)
+                                            
+                                        })
+                                        alert.addAction(defaultAction)
+                                        self.present(alert, animated: true, completion: nil)
+                                        
+                                        self.audioPlayerInstance.play()
+                                        
+                                    } else {
+                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                    }
+                                    
+                                    
                                 }
                                 else {
                                     print("failed to get the uPort url from QR code 2")

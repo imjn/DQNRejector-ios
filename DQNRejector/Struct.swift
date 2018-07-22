@@ -28,3 +28,12 @@ struct CheckAdmin: Codable {
 struct User {
     let address : String
 }
+
+struct txHash: Codable {
+    let txHash : String
+}
+
+struct UrlAndLimit: Codable {
+    let result : String
+    let limit : Int
+}

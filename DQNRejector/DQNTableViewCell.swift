@@ -13,6 +13,7 @@ class DQNTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     
+    var address = String()
     
     override func awakeFromNib() {
         super.awakeFromNib()

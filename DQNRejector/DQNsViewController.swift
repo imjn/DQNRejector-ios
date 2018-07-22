@@ -13,6 +13,10 @@ import FirebaseFirestore
 class DQNsViewController: UIViewController, UITableViewDelegate {
     
     var users = [NSDictionary]()
+    var selectedName = String()
+    var selectedAddress = String()
+    
+    let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleView: UIView!
@@ -20,7 +24,6 @@ class DQNsViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
 
         titleView.Amin()
@@ -37,6 +40,10 @@ class DQNsViewController: UIViewController, UITableViewDelegate {
         
         getGuests()
         
+        refreshControl.tintColor = UIColor.hex(hex: "8E2DE2", alpha: 1.0)
+        refreshControl.addTarget(self, action:#selector(refresh), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,16 +51,32 @@ class DQNsViewController: UIViewController, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    @objc func refresh() {
+        getGuests()
+    }
+    
     func getGuests() {
         
         let db = Firestore.firestore()
         db.collection("Places").document("Mt.Fuji").collection("Guest").getDocuments() { (querySnapshot, err) in
             if let err = err {
+                
+                if self.refreshControl.isRefreshing {
+                    self.refreshControl.endRefreshing()
+                }
+                
                 print("Error getting documents: \(err)")
             } else {
+                
+                self.users = []
+                
                 for document in querySnapshot!.documents {
                     print("\(document.documentID) => \(document.data())")
                     self.users.append(document.data() as NSDictionary)
+                }
+                
+                if self.refreshControl.isRefreshing {
+                    self.refreshControl.endRefreshing()
                 }
                 
                 self.tableView.reloadData()
@@ -94,6 +117,23 @@ class DQNsViewController: UIViewController, UITableViewDelegate {
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = users[indexPath.row]
+        selectedName = user["name"] as! String
+        selectedAddress = user["address"] as! String
+        
+        performSegue(withIdentifier: "ToSend", sender: nil)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ToSend") {
+            let subVC: SendDQNViewController = (segue.destination as? SendDQNViewController)!
+            subVC.targetName = selectedName
+            subVC.targetAddress = selectedAddress
+        }
+    }
+    
 }
 
 extension DQNsViewController: UITableViewDataSource {
@@ -115,6 +155,7 @@ extension DQNsViewController: UITableViewDataSource {
         let address = user["address"] as! String
         
         cell.nameLabel.text = name
+        cell.address = address
         
         return cell
         

@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Alamofire
 
 class SendDQNViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -19,18 +20,23 @@ class SendDQNViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     var targetAddress = String()
     var targetName = String()
     var dataList = [String]()
+    var selectedValue = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         valueView.Amin()
         
-        for i in 0...100 {
+        selectedValue = "1"
+        
+        for i in 1...101 {
             
             let str = i.description
             dataList.append(str)
             
         }
+        
+        nameLabel.text = targetName
         
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -53,6 +59,9 @@ class SendDQNViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     @IBAction func sendDQN(_ sender: Any) {
+        
+        sendDQN(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/SendDQN", address: targetAddress, num: selectedValue)
+        
         self.audioPlayerInstance.play()
     }
     
@@ -83,6 +92,56 @@ class SendDQNViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     func pickerView(_ pickerView: UIPickerView,
                     didSelectRow row: Int,
                     inComponent component: Int) {
-        // 処理
+        
+        selectedValue = dataList[row]
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        // 表示するラベルを生成する
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 70))
+        label.textAlignment = .center
+        label.text = dataList[row]
+        label.font = UIFont(name: "Hiragino Maru Gothic ProN",size:35)
+        label.textColor = .white
+        return label
+    }
+    
+    func sendDQN(UrlStr: String, address: String, num: String) {
+        
+        let url = UrlStr
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        let parameters: Parameters = [
+            "to" : address,
+            "value" : num
+        ]
+        
+        Alamofire.request(url,
+                          method: .post,
+                          parameters: parameters,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseJSON { response in
+                            
+                            let json = response.data
+                            
+                            if let resultData = try? JSONDecoder().decode(txHash.self, from: json!)
+                            {
+                                
+                                if resultData.txHash.count == 66 {
+                                    
+                                    print("成功！！！")
+                                    self.dismiss(animated: true, completion: nil)
+                                    
+                                }
+                                
+                            }
+                            
+                            print("oooooooops error")
+                            debugPrint(response)
+        }
+        
     }
 }

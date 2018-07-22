@@ -15,6 +15,7 @@ import FirebaseFirestore
 class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
 
     var audioPlayerInstance : AVAudioPlayer! = nil
+    var currentDQN: Int? = nil
     
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var cameraBtn: UIButton!
@@ -22,6 +23,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     let transition = BubbleTransition()
     var address = String()
+    var timer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,9 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
             
             return
         }
+        
+        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        timer.fire()
         
         address = add
         
@@ -75,16 +80,23 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ToCamera":
-            let controller = segue.destination
+            let controller = segue.destination as! CameraViewController
             controller.transitioningDelegate = self
             controller.modalPresentationStyle = .custom
+            
+            controller.currentDQN = currentDQN!
+            
         default:
             return
         }
     }
     
     @IBAction func toCamera(_ sender: Any) {
-        performSegue(withIdentifier: "ToCamera", sender: nil)
+        
+        if let dqn = currentDQN {
+            performSegue(withIdentifier: "ToCamera", sender: nil)
+        }
+        
     }
     
     
@@ -115,22 +127,18 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
                             if let resultData = try? JSONDecoder().decode(Balance.self, from: json!)
                 {
                     self.pointLabel.text = resultData.result
-                    
-                    if let pointNum = Int(resultData.result) {
-                        
-                        if pointNum > 8 {
-                            self.audioPlayerInstance.play()
-                        }
-                        
-                    }
-                    
-                    
+                    self.currentDQN = Int(resultData.result)!
                 }
 
                 print("oooooooops error")
                 debugPrint(response)
         }
         
+    }
+    
+    
+    @objc func update(tm: Timer) {
+        requestDQN(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/EthCall", address: address)
     }
 }
 
