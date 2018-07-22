@@ -10,6 +10,7 @@ import UIKit
 import BubbleTransition
 import Alamofire
 import AVFoundation
+import FirebaseFirestore
 
 class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
 
@@ -20,20 +21,23 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     @IBOutlet weak var containerView: UIView!
     
     let transition = BubbleTransition()
+    var address = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         containerView.Amin()
         
-//        guard let address =  UserDefaults.standard.string(forKey: "address") else {
-//            
-//            Firestore.firestore().collection("users").document().documentID
-//            
-//            return
-//        }
+        guard let add =  UserDefaults.standard.string(forKey: "address") else {
+            
+            self.dismiss(animated: true, completion: nil)
+            
+            return
+        }
         
-        requestDQN(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/EthCall", address: "0xc633c8d9e80a5e10bb939812b548b821554c49a6")
+        address = add
+        
+        requestDQN(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/EthCall", address: address)
         
         
         let soundFilePath = Bundle.main.path(forResource: "failed", ofType: "mp3")!
@@ -86,7 +90,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     @IBAction func refresh(_ sender: Any) {
         
-        requestDQN(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/EthCall", address: "0xc633c8d9e80a5e10bb939812b548b821554c49a6")
+        requestDQN(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/EthCall", address: address)
         
     }
     

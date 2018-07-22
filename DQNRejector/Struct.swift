@@ -24,3 +24,7 @@ struct DQNUser: Codable {
 struct CheckAdmin: Codable {
     let result : Bool
 }
+
+struct User {
+    let address : String
+}

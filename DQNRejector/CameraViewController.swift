@@ -16,9 +16,15 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     // カメラやマイクの入出力を管理するオブジェクトを生成
     private let session = AVCaptureSession()
+    var uid = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let id = UserDefaults.standard.string(forKey: "uid") {
+            uid = id
+        }
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         // カメラやマイクのデバイスそのものを管理するオブジェクトを生成（ここではワイドアングルカメラ・ビデオ・背面カメラを指定）
@@ -96,27 +102,42 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     }
     
     func requestWithLoginUrl(UrlStr: String) {
-        Alamofire.request(UrlStr).response { response in
-            if let data = response.data {
-                let resultData = try? JSONDecoder().decode(Login.self, from: data)
-                
-                guard let result = resultData else {
-                    print("failed to get the uPort url from QR code 1")
-                    return
-                }
-                
-                if let url = URL(string: result.loginUrl) {
-                    TapticEngine.notification.feedback(.success)
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
-                else {
-                    print("failed to get the uPort url from QR code 2")
-                }
-            }
-            else {
-                print("Ooooooops No Data...")
-            }
+        
+        let url = UrlStr
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        let parameters = [
+            
+            "userid" : uid
+            
+        ]
+        
+        Alamofire.request(url,
+                          method: .post,
+                          parameters: parameters,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseJSON { response in
+                            
+                            let json = response.data
+                            
+                            if let result = try? JSONDecoder().decode(DQNString.self, from: json!)
+                            {
+                                
+                                if let url = URL(string: result.result) {
+                                    TapticEngine.notification.feedback(.success)
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                }
+                                else {
+                                    print("failed to get the uPort url from QR code 2")
+                                }
+                                
+                            }
+                            
+                            debugPrint(response)
         }
     }
+    
+    
     
 }

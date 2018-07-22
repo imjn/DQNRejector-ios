@@ -9,45 +9,29 @@
 import UIKit
 import Alamofire
 import FirebaseFirestore
+import TapticEngine
 
 class OnboardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let address =  UserDefaults.standard.string(forKey: "address") else {
-            
-            requestUID(UrlStr: "https://us-central1-eth-hack.cloudfunctions.net/CreateUser") { (uid) in
-                if let uid = uid {
-                    
-                    self.requestUserData(UrlStr: "", uid: uid, completion: { (address, name) in
-                        if let address = address, let name = name {
-                            
-                            UserDefaults.standard.set(address, forKey: "address")
-                            UserDefaults.standard.set(name, forKey: "name")
-                            
-                            self.checkAdmin(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/IsServiceProvider", address: address)
-                            
-                        }
-                    })
-                    
-                } else {
-                    
-                }
-            }
-            
-            return
-            
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(OnboardingViewController.viewWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(OnboardingViewController.viewWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
         
-        
-        self.checkAdmin(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/IsServiceProvider", address: address)
+        firstFunctions()
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func viewWillEnterForeground(_ notification: Notification?) {
+        if (self.isViewLoaded && (self.view.window != nil)) {
+            firstFunctions()
+        }
     }
     
     func checkAdmin(UrlStr: String, address: String) {
@@ -67,11 +51,14 @@ class OnboardingViewController: UIViewController {
                           headers: headers).responseJSON { response in
                             
             let json = response.data
+            print(response.debugDescription)
             
-            if let resultData = try? JSONDecoder().decode(CheckAdmin.self, from: json!)
+            if let decodedData = try? JSONDecoder().decode(DQNString.self, from: json!)
             {
                 
-                if resultData.result {
+                
+                
+                if decodedData.result == "true" {
                     
                     self.performSegue(withIdentifier: "ToAdmin", sender: nil)
                     
@@ -81,9 +68,10 @@ class OnboardingViewController: UIViewController {
                     
                 }
                 
+            } else {
+                print("oooooooops error fuckkkkkkkkkkkkk")
             }
                             
-            print("oooooooops error")
             debugPrint(response)
         }
         
@@ -112,8 +100,6 @@ class OnboardingViewController: UIViewController {
             } else {
                 completion(nil)
             }
-                            
-            print("oooooooops error")
             debugPrint(response)
         }
         
@@ -125,11 +111,14 @@ class OnboardingViewController: UIViewController {
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
+        
         let parameters = [
         
             "userid" : uid
         
         ]
+        
+        print("こんにちは\(uid)")
         
         Alamofire.request(url,
                           method: .post,
@@ -144,16 +133,111 @@ class OnboardingViewController: UIViewController {
                 
                 let address = resultData.address
                 let name = resultData.name
+                
+                print(name)
+                
                 completion(address, name)
                 
             } else {
                 completion(nil, nil)
             }
             
-            print("oooooooops error")
             debugPrint(response)
         }
         
     }
+    
+    func requestLoginUrl(UrlStr: String, uid: String) {
+        
+        let url = UrlStr
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        let parameters = [
+            
+            "userid" : uid
+            
+        ]
+        
+        Alamofire.request(url,
+                          method: .post,
+                          parameters: parameters,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseJSON { response in
+                            
+                            let json = response.data
+                            
+                            if let result = try? JSONDecoder().decode(DQNString.self, from: json!)
+                            {
+                                
+                                if let url = URL(string: result.result) {
+                                    TapticEngine.notification.feedback(.success)
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                }
+                                else {
+                                    print("failed to get the uPort url from QR code 2")
+                                }
+                                
+                            }
+                            
+                            debugPrint(response)
+        }
+        
+    }
+    
+    func firstFunctions() {
+        guard let uid =  UserDefaults.standard.string(forKey: "uid") else {
+            
+            requestUID(UrlStr: "https://us-central1-eth-hack.cloudfunctions.net/CreateUser") { (uid) in
+                if let uid = uid {
+                    
+                    UserDefaults.standard.set(uid, forKey: "uid")
+                    
+                    self.requestLoginUrl(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/GetLoginUrl", uid: uid)
+                    
+                    self.requestUserData(UrlStr: "https://us-central1-eth-hack.cloudfunctions.net/GetUserData", uid: uid, completion: { (address, name) in
+                        if let address = address, let name = name {
+                            
+                            print(name)
+                            
+                            UserDefaults.standard.set(address, forKey: "address")
+                            UserDefaults.standard.set(name, forKey: "name")
+                            
+                            self.checkAdmin(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/IsServiceProvider", address: address)
+                            
+                        }
+                    })
+                    
+                } else {
+                    
+                    
+                    
+                }
+            }
+            
+            
+            return
+            
+        }
+        
+        if let address = UserDefaults.standard.string(forKey: "address") {
+            
+            self.checkAdmin(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/IsServiceProvider", address: address)
+            
+        } else {
+            
+            self.requestUserData(UrlStr: "https://us-central1-eth-hack.cloudfunctions.net/GetUserData", uid: uid, completion: { (address, name) in
+                if let address = address, let name = name {
+                    
+                    UserDefaults.standard.set(address, forKey: "address")
+                    UserDefaults.standard.set(name, forKey: "name")
+                    
+                    self.checkAdmin(UrlStr: "https://us-central1-nishikigoi-5324d.cloudfunctions.net/IsServiceProvider", address: address)
+                    
+                }
+            })
+        }
+    }
+    
     
 }

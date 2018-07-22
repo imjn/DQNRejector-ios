@@ -10,35 +10,140 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--SendDQN View Controller-->
+        <!--Ns View Controller-->
         <scene sceneID="K7U-FP-0hq">
             <objects>
-                <viewController id="079-y4-z17" customClass="SendDQNViewController" customModule="DQNRejector" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="079-y4-z17" customClass="DQNsViewController" customModule="DQNRejector" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XsP-bf-pqM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dh4-2T-3bK">
-                                <rect key="frame" x="116" y="299" width="153" height="77"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fLp-Gq-QtD">
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="65"/>
-                                <state key="normal" title="DQN">
-                                    <color key="titleColor" red="0.2901960784" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="0.5568627451" green="0.1764705882" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendDQN:" destination="079-y4-z17" eventType="touchUpInside" id="ZGz-Xt-mCy"/>
-                                </connections>
-                            </button>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awe-9h-voP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkV-vc-0IF">
+                                        <rect key="frame" x="145.5" y="47" width="85.5" height="25"/>
+                                        <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="b6X-Bx-3FZ"/>
+                                    <constraint firstItem="kkV-vc-0IF" firstAttribute="centerX" secondItem="awe-9h-voP" secondAttribute="centerX" id="cHp-V7-3Ot"/>
+                                    <constraint firstItem="kkV-vc-0IF" firstAttribute="centerY" secondItem="awe-9h-voP" secondAttribute="centerY" constant="14.5" id="lyk-YN-WVK"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4Qo-so-l3c" firstAttribute="bottom" secondItem="fLp-Gq-QtD" secondAttribute="bottom" id="5CS-bQ-h0R"/>
+                            <constraint firstItem="fLp-Gq-QtD" firstAttribute="top" secondItem="awe-9h-voP" secondAttribute="bottom" id="6jt-wB-mHs"/>
+                            <constraint firstItem="awe-9h-voP" firstAttribute="trailing" secondItem="4Qo-so-l3c" secondAttribute="trailing" id="FFf-jP-e3X"/>
+                            <constraint firstItem="awe-9h-voP" firstAttribute="top" secondItem="XsP-bf-pqM" secondAttribute="top" id="Sep-au-jZ5"/>
+                            <constraint firstItem="4Qo-so-l3c" firstAttribute="trailing" secondItem="fLp-Gq-QtD" secondAttribute="trailing" id="mE9-F5-CCD"/>
+                            <constraint firstItem="fLp-Gq-QtD" firstAttribute="leading" secondItem="4Qo-so-l3c" secondAttribute="leading" id="vc1-DS-D09"/>
+                            <constraint firstItem="awe-9h-voP" firstAttribute="leading" secondItem="4Qo-so-l3c" secondAttribute="leading" id="zVQ-3c-ASW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4Qo-so-l3c"/>
                     </view>
+                    <connections>
+                        <outlet property="placeLabel" destination="kkV-vc-0IF" id="eCu-QF-bda"/>
+                        <outlet property="tableView" destination="fLp-Gq-QtD" id="GD2-Zf-Prl"/>
+                        <outlet property="titleView" destination="awe-9h-voP" id="W4w-kY-i74"/>
+                        <segue destination="Cb2-Bl-2fd" kind="presentation" id="cfS-9I-go7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e6f-pA-p4S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="993" y="1010"/>
+            <point key="canvasLocation" x="992.79999999999995" y="1009.7451274362819"/>
+        </scene>
+        <!--SendDQN View Controller-->
+        <scene sceneID="tDe-1k-paS">
+            <objects>
+                <viewController id="Cb2-Bl-2fd" customClass="SendDQNViewController" customModule="DQNRejector" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Z5-fp-yIy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yge-md-Lak">
+                                <rect key="frame" x="152" y="555" width="71" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="SXC-ZA-yas"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="30"/>
+                                <state key="normal" title="DQN">
+                                    <color key="titleColor" red="0.2901960784" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendDQN:" destination="Cb2-Bl-2fd" eventType="touchUpInside" id="KYF-qi-QHF"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNe-Zg-2bO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="424"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MLX-YS-CTs">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="424"/>
+                                        <color key="tintColor" red="0.99215686270000003" green="1" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="MLX-YS-CTs" firstAttribute="leading" secondItem="DNe-Zg-2bO" secondAttribute="leading" id="5XY-o9-N2O"/>
+                                    <constraint firstAttribute="bottom" secondItem="MLX-YS-CTs" secondAttribute="bottom" id="9r5-zC-V5R"/>
+                                    <constraint firstItem="MLX-YS-CTs" firstAttribute="top" secondItem="DNe-Zg-2bO" secondAttribute="top" id="L65-UP-GK0"/>
+                                    <constraint firstAttribute="trailing" secondItem="MLX-YS-CTs" secondAttribute="trailing" id="Sin-JT-vJN"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvv-ip-Ydh">
+                                <rect key="frame" x="0.0" y="474" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="H9A-er-UhE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="40"/>
+                                <color key="textColor" red="0.5568627451" green="0.1764705882" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ww-du-umb">
+                                <rect key="frame" x="16" y="615" width="99" height="32"/>
+                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="20"/>
+                                <state key="normal" title="キャンセル">
+                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="Cb2-Bl-2fd" eventType="touchUpInside" id="rhC-3I-LWk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DNe-Zg-2bO" firstAttribute="trailing" secondItem="kAc-dK-ecu" secondAttribute="trailing" id="4bU-o6-5Of"/>
+                            <constraint firstItem="Yge-md-Lak" firstAttribute="centerX" secondItem="kAc-dK-ecu" secondAttribute="centerX" id="F98-Qn-NUg"/>
+                            <constraint firstItem="DNe-Zg-2bO" firstAttribute="top" secondItem="6Z5-fp-yIy" secondAttribute="top" id="Fbc-lh-Ope"/>
+                            <constraint firstItem="DNe-Zg-2bO" firstAttribute="leading" secondItem="kAc-dK-ecu" secondAttribute="leading" id="P0C-Jh-N1P"/>
+                            <constraint firstItem="kAc-dK-ecu" firstAttribute="bottom" secondItem="Yge-md-Lak" secondAttribute="bottom" constant="70" id="RsD-AR-1kL"/>
+                            <constraint firstItem="Cvv-ip-Ydh" firstAttribute="top" secondItem="DNe-Zg-2bO" secondAttribute="bottom" constant="50" id="S2S-Sc-NCu"/>
+                            <constraint firstItem="Cvv-ip-Ydh" firstAttribute="leading" secondItem="kAc-dK-ecu" secondAttribute="leading" id="bIb-B8-K2C"/>
+                            <constraint firstItem="Cvv-ip-Ydh" firstAttribute="trailing" secondItem="kAc-dK-ecu" secondAttribute="trailing" id="hxZ-kj-Ljh"/>
+                            <constraint firstItem="Yge-md-Lak" firstAttribute="top" secondItem="Cvv-ip-Ydh" secondAttribute="bottom" constant="41" id="qNX-pl-DbR"/>
+                            <constraint firstItem="4ww-du-umb" firstAttribute="leading" secondItem="kAc-dK-ecu" secondAttribute="leading" constant="16" id="wd4-Db-CMZ"/>
+                            <constraint firstItem="kAc-dK-ecu" firstAttribute="bottom" secondItem="4ww-du-umb" secondAttribute="bottom" constant="20" id="wo5-7b-IUA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kAc-dK-ecu"/>
+                    </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="Cvv-ip-Ydh" id="t3k-UM-RKX"/>
+                        <outlet property="pickerView" destination="MLX-YS-CTs" id="fXU-BC-Wvh"/>
+                        <outlet property="valueView" destination="DNe-Zg-2bO" id="77O-kb-5Tl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gui-dw-qHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1752.8" y="1009.7451274362819"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -186,6 +291,6 @@
         <image name="refresh" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PJT-oq-hrq"/>
+        <segue reference="e0I-Nj-MxC"/>
     </inferredMetricsTieBreakers>
 </document>

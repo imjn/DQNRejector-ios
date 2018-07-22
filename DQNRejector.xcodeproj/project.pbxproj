@@ -21,6 +21,9 @@
 		43BEF1E221037E80002F55D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43BEF1E121037E80002F55D1 /* GoogleService-Info.plist */; };
 		43BEF1E421037EBB002F55D1 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BEF1E321037EBB002F55D1 /* FirebaseCore.framework */; };
 		43BEF1E621037EBB002F55D1 /* FirebaseFirestore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BEF1E521037EBB002F55D1 /* FirebaseFirestore.framework */; };
+		43BEF1E8210416A9002F55D1 /* DQNsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BEF1E7210416A9002F55D1 /* DQNsViewController.swift */; };
+		43BEF1EB210416EF002F55D1 /* DQNTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BEF1E9210416EF002F55D1 /* DQNTableViewCell.swift */; };
+		43BEF1EC210416EF002F55D1 /* DQNTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43BEF1EA210416EF002F55D1 /* DQNTableViewCell.xib */; };
 		43CC60782102C21B00D227E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC60772102C21B00D227E7 /* AppDelegate.swift */; };
 		43CC607A2102C21B00D227E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC60792102C21B00D227E7 /* ViewController.swift */; };
 		43CC607D2102C21B00D227E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43CC607B2102C21B00D227E7 /* Main.storyboard */; };
@@ -44,6 +47,9 @@
 		43BEF1E121037E80002F55D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43BEF1E321037EBB002F55D1 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BEF1E521037EBB002F55D1 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43BEF1E7210416A9002F55D1 /* DQNsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DQNsViewController.swift; sourceTree = "<group>"; };
+		43BEF1E9210416EF002F55D1 /* DQNTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DQNTableViewCell.swift; sourceTree = "<group>"; };
+		43BEF1EA210416EF002F55D1 /* DQNTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DQNTableViewCell.xib; sourceTree = "<group>"; };
 		43C9926BF4187C045B368A57 /* Pods-DQNRejector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DQNRejector.release.xcconfig"; path = "Pods/Target Support Files/Pods-DQNRejector/Pods-DQNRejector.release.xcconfig"; sourceTree = "<group>"; };
 		43CC60742102C21B00D227E7 /* DQNRejector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DQNRejector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CC60772102C21B00D227E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +115,9 @@
 				43BEF1DD21032DAC002F55D1 /* SendDQNViewController.swift */,
 				43BEF1DF21033A48002F55D1 /* OnboardingViewController.swift */,
 				43BEF1E121037E80002F55D1 /* GoogleService-Info.plist */,
+				43BEF1E7210416A9002F55D1 /* DQNsViewController.swift */,
+				43BEF1E9210416EF002F55D1 /* DQNTableViewCell.swift */,
+				43BEF1EA210416EF002F55D1 /* DQNTableViewCell.xib */,
 			);
 			path = DQNRejector;
 			sourceTree = "<group>";
@@ -198,6 +207,7 @@
 			files = (
 				43CC60822102C21C00D227E7 /* LaunchScreen.storyboard in Resources */,
 				43CC607F2102C21C00D227E7 /* Assets.xcassets in Resources */,
+				43BEF1EC210416EF002F55D1 /* DQNTableViewCell.xib in Resources */,
 				43CC607D2102C21B00D227E7 /* Main.storyboard in Resources */,
 				43BEF1E221037E80002F55D1 /* GoogleService-Info.plist in Resources */,
 				43BEF1DA21032186002F55D1 /* failed.mp3 in Resources */,
@@ -273,10 +283,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43BEF1E8210416A9002F55D1 /* DQNsViewController.swift in Sources */,
 				43BEF1CA2102CEAB002F55D1 /* Struct.swift in Sources */,
 				43BEF1CE2102D540002F55D1 /* CameraViewController.swift in Sources */,
 				43BEF1DE21032DAC002F55D1 /* SendDQNViewController.swift in Sources */,
 				43CC607A2102C21B00D227E7 /* ViewController.swift in Sources */,
+				43BEF1EB210416EF002F55D1 /* DQNTableViewCell.swift in Sources */,
 				43BEF1E021033A48002F55D1 /* OnboardingViewController.swift in Sources */,
 				43CC60782102C21B00D227E7 /* AppDelegate.swift in Sources */,
 				43BEF1CC2102D058002F55D1 /* DQNUI.swift in Sources */,
